@@ -8,6 +8,8 @@ import ssl
 from tornado.options import define, options
 import json
 import piserialnumber
+import subprocess32 as subprocess
+import traceback
 
 commands = {
   "register": json.dumps({"command": "register", "id": piserialnumber.serial()})	
@@ -38,7 +40,20 @@ if __name__ == "__main__":
 
 	while True:
 		#受信したメッセージを表示
-		print ws.recv()
+		recv_str = ws.recv()
+		print recv_str
+		try:
+			ms = json.loads(recv_str)
+			if ms["order"] == "exec_bash":
+				print ("exec {}".format(ms["cmd_str"]))
+				p = subprocess.Popen(ms["cmd_str"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+				std_out, std_err = p.communicate(None, timeout=30)
+				result = std_out.strip()
+				error  = std_err.strip()
+		except:
+			info=sys.exc_info()
+			print (traceback.format_exc(info[0]))
+			pass
  
 	#コネクションを切断
 	#ws.close()

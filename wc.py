@@ -1,10 +1,18 @@
 #-*- coding:utf-8 -*-
 
 #from websocket import create_connection
+import tornado.ioloop
 import websocket
 import sys
 import ssl
 from tornado.options import define, options
+import json
+import piserialnumber
+
+commands = {
+  "register": json.dumps({"command": "register", "id": piserialnumber.serial()})	
+}
+print(commands["register"])
 
 if __name__ == "__main__":
 
@@ -26,10 +34,12 @@ if __name__ == "__main__":
 	ws.connect(options.protocol + options.url)
 
 	#メッセージを送信
-	ws.send('hello world!')
+	ws.send(commands["register"])
 
-	#受信したメッセージを表示
-	print ws.recv()
+	while True:
+		#受信したメッセージを表示
+		print ws.recv()
  
 	#コネクションを切断
-	ws.close()
+	#ws.close()
+#	tornado.ioloop.IOLoop.instance().start()

@@ -14,7 +14,7 @@ import traceback
 commands = {
   "register": json.dumps({"command": "register", "id": piserialnumber.serial()})	
 }
-print(commands["register"])
+id = piserialnumber.serial()
 
 if __name__ == "__main__":
 
@@ -33,7 +33,11 @@ if __name__ == "__main__":
  	else:
 		ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})
 
-	ws.connect(options.protocol + options.url)
+#	ws.connect(options.protocol + options.url)
+	ws.connect(options.protocol + options.url, 
+		   header=["x-custome-id: {}".format(id),
+			   "Authorization: Bearer 0000"
+			  ])
 
 	#メッセージを送信
 	ws.send(commands["register"])

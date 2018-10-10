@@ -1,6 +1,7 @@
 #-*- coding:utf-8 -*-
 
 #from websocket import create_connection
+import os
 import tornado.ioloop
 import websocket
 import sys
@@ -12,6 +13,8 @@ import subprocess32 as subprocess
 import traceback
 import logging
 
+if not os.path.exists('/var/log/SCRIPT/'):
+	os.makedirs('/var/log/SCRIPT/')
 logging.basicConfig(format='%(asctime)s %(filename)s %(lineno)d %(levelname)s %(message)s',filename='/var/log/SCRIPT/hypha.log',level=logging.DEBUG)
 
 commands = {

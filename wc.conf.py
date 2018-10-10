@@ -1,1 +1,2 @@
-protocol = "ws:"
+#protocol = "ws:"
+protocol = "wss:"

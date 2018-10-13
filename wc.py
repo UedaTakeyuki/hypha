@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
 	# command options
 	define("protocol", default="wss:", help="ws: or wss:(default)")
-	define("url", default="//titurel.uedasoft.com:8888/websocket", help="url string without protocol like //aaa.bbb.ccc/ddd")
+	define("url", default="//titurel.uedasoft.com:8888/device", help="url string without protocol like //aaa.bbb.ccc/ddd")
 	define("config_file", default="", help="config file path")
 	define("device_id",	default="", help="specific device id in case. without this option, device original id (cpu id, eth mac address, etc) is used.")
 	options.parse_command_line()

@@ -36,7 +36,7 @@ if __name__ == "__main__":
 	if options.protocol == "ws:":
 		#ws = create_connection("wss://titurel.uedasoft.com:8888/websocket")
 		ws = websocket.WebSocket()
- 	else:
+	else:
 		ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})
 
 	if options.device_id:

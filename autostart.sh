@@ -23,7 +23,8 @@ usage_exit(){
 }
 
 on(){
-	sed -i "s@^ExecStart=.*@ExecStart=/usr/bin/python -m ${SCRIPT_DIR}/wc@" ${CMD}.service
+#	sed -i "s@^ExecStart=.*@ExecStart=/usr/bin/python -m ${SCRIPT_DIR}/wc@" ${CMD}.service
+	sed -i "s@^ExecStart=.*@ExecStart=${SCRIPT_DIR}/wc.bin@" ${CMD}.service
 	sed -i "s@^PIDFile=.*@PIDFile=/var/run/${CMD}.pid@" ${CMD}.service
 	sudo ln -s ${SCRIPT_DIR}\/${CMD}.service /etc/systemd/system/${CMD}.service
 	sudo systemctl daemon-reload

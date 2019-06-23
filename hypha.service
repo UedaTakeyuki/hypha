@@ -1,9 +1,8 @@
-
 [Unit]
 Description=Get temp, humid, and humiditydeficit data & Post to the monitor
 After=rc-local.service
 [Service]
-ExecStart=/usr/bin/python -m /home/pi/hypha/wc
+ExecStart=/home/pi/SCRIPT/hypha/wc.bin
 Restart=always
 #RestartSec=90
 RestartSec=30
